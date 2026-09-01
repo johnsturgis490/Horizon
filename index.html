@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Games Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Unblocked<span>Games</span></h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for a game...">
+        </div>
+    </header>
+
+    <!-- This grid is where the games appear -->
+    <main id="gameGrid" class="game-grid"></main>
+
+    <!-- This is the popup window that plays the game -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Game</h2>
+                <button id="closeBtn">&times;</button>
+            </div>
+            <div class="iframe-container">
+                <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button onclick="toggleFullScreen()">Go Fullscreen</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

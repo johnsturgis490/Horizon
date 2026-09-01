@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Slope",
+    "thumbnail": "https://placehold.co/300x200/222/38bdf8?text=Slope",
+    "url": "https://wayback-slope.pages.dev/"
+  },
+  {
+    "id": 2,
+    "title": "Retro Bowl",
+    "thumbnail": "https://placehold.co/300x200/222/38bdf8?text=Retro+Bowl",
+    "url": "https://game316009.konggames.com/gamez/0031/6009/live/index.html"
+  },
+  {
+    "id": 3,
+    "title": "Tunnel Rush",
+    "thumbnail": "https://placehold.co/300x200/222/38bdf8?text=Tunnel+Rush",
+    "url": "https://shome-0.github.io/tunnel-rush/"
+  }
+]
