@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unblocked Games Portal</title>
+<!-- Correct way to link CSS (in the <head>) -->
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <header>
-        <h1>Unblocked Games</h1>
-        <input type="text" id="searchBar" placeholder="Search for a game...">
-    </header>
+    <!-- ... (rest of your body) ... -->
 
-    <main>
-        <!-- This grid shows the list of games -->
-        <div id="gameGrid" class="game-grid"></div>
-
-        <!-- This section is hidden until a game is clicked -->
-        <div id="gameView" class="hidden">
-            <button id="backBtn">← Back to Games</button>
-            <div class="iframe-container">
-                <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </main>
-
+    <!-- Correct way to link JS (at the end of <body>) -->
+    <!-- DO NOT put games.json here! -->
     <script src="script.js"></script>
 </body>
 </html>
