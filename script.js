@@ -1,105 +1,54 @@
-:root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --accent: #38bdf8;
-    --text: #f8fafc;
+let gamesData = [];
+
+const gameGrid = document.getElementById('gameGrid');
+const gameView = document.getElementById('gameView');
+const gameFrame = document.getElementById('gameFrame');
+const backBtn = document.getElementById('backBtn');
+const searchBar = document.getElementById('searchBar');
+
+// 1. Fetch the data from JSON file
+fetch('games.json')
+    .then(response => response.json())
+    .then(data => {
+        gamesData = data;
+        displayGames(gamesData);
+    })
+    .catch(err => console.error("Error loading games:", err));
+
+// 2. Function to create game cards
+function displayGames(games) {
+    gameGrid.innerHTML = ''; // Clear current grid
+    games.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            <img src="${game.thumbnail}" alt="${game.title}">
+            <h3>${game.title}</h3>
+        `;
+        card.onclick = () => loadGame(game.url);
+        gameGrid.appendChild(card);
+    });
 }
 
-body {
-    font-family: sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    margin: 0;
+// 3. Search functionality
+searchBar.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = gamesData.filter(game => 
+        game.title.toLowerCase().includes(term)
+    );
+    displayGames(filtered);
+});
+
+// 4. Load game into iframe
+function loadGame(url) {
+    gameGrid.classList.add('hidden');
+    gameView.classList.remove('hidden');
+    gameFrame.src = url;
 }
 
-header {
-    background: #1e293b;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-header h1 span { color: var(--accent); }
-
-#searchInput {
-    padding: 12px 20px;
-    width: 300px;
-    border-radius: 25px;
-    border: none;
-    background: #334155;
-    color: white;
-    margin-top: 15px;
-}
-
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 40px;
-}
-
-.game-card {
-    background: var(--card);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-align: center;
-    border: 1px solid #334155;
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-}
-
-.game-card img {
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-}
-
-/* Modal / Game Player Styling */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 1000px;
-    margin: 20px auto;
-    background: var(--card);
-    border-radius: 10px;
-}
-
-.modal-header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#closeBtn {
-    background: none; border: none; color: white;
-    font-size: 30px; cursor: pointer;
-}
-
-.iframe-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 ratio */
-    height: 0;
-}
-
-.iframe-container iframe {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-}
-
-.modal-footer { padding: 15px; text-align: center; }
-
-.modal-footer button {
-    background: var(--accent);
-    border: none; padding: 10px 20px;
-    border-radius: 5px; cursor: pointer; font-weight: bold;
-}
+// 5. Back button logic
+backBtn.onclick = () => {
+    gameGrid.classList.remove('hidden');
+    gameView.classList.add('hidden');
+    gameFrame.src = ''; // Stop the game when leaving
+};
