@@ -1,4 +1,17 @@
-let gamesData = [];
+const gamesData = [
+    {
+        "id": "game1",
+        "title": "Google Mirror",
+        "thumbnail": "https://via.placeholder.com/150",
+        "url": "https://www.google.com/search?igu=1"
+    },
+    {
+        "id": "game2",
+        "title": "Example Game",
+        "thumbnail": "https://via.placeholder.com/150",
+        "url": "https://example.com"
+    }
+];
 
 const gameGrid = document.getElementById('gameGrid');
 const gameView = document.getElementById('gameView');
@@ -6,18 +19,9 @@ const gameFrame = document.getElementById('gameFrame');
 const backBtn = document.getElementById('backBtn');
 const searchBar = document.getElementById('searchBar');
 
-// 1. Fetch the data from JSON file
-fetch('games.json')
-    .then(response => response.json())
-    .then(data => {
-        gamesData = data;
-        displayGames(gamesData);
-    })
-    .catch(err => console.error("Error loading games:", err));
-
-// 2. Function to create game cards
+// Function to display the cards
 function displayGames(games) {
-    gameGrid.innerHTML = ''; // Clear current grid
+    gameGrid.innerHTML = ''; 
     games.forEach(game => {
         const card = document.createElement('div');
         card.className = 'game-card';
@@ -25,12 +29,19 @@ function displayGames(games) {
             <img src="${game.thumbnail}" alt="${game.title}">
             <h3>${game.title}</h3>
         `;
-        card.onclick = () => loadGame(game.url);
+        card.onclick = () => {
+            gameGrid.classList.add('hidden');
+            gameView.classList.remove('hidden');
+            gameFrame.src = game.url;
+        };
         gameGrid.appendChild(card);
     });
 }
 
-// 3. Search functionality
+// Initial display
+displayGames(gamesData);
+
+// Search functionality
 searchBar.addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
     const filtered = gamesData.filter(game => 
@@ -39,16 +50,9 @@ searchBar.addEventListener('input', (e) => {
     displayGames(filtered);
 });
 
-// 4. Load game into iframe
-function loadGame(url) {
-    gameGrid.classList.add('hidden');
-    gameView.classList.remove('hidden');
-    gameFrame.src = url;
-}
-
-// 5. Back button logic
+// Back button
 backBtn.onclick = () => {
     gameGrid.classList.remove('hidden');
     gameView.classList.add('hidden');
-    gameFrame.src = ''; // Stop the game when leaving
+    gameFrame.src = '';
 };
