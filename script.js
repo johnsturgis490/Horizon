@@ -1,17 +1,19 @@
 const gamesData = [
     {
-        "id": "game1",
+        "id": "1",
         "title": "Google Mirror",
         "thumbnail": "https://via.placeholder.com/150",
         "url": "https://www.google.com/search?igu=1"
     },
     {
-        "id": "game2",
+        "id": "2",
         "title": "Example Game",
         "thumbnail": "https://via.placeholder.com/150",
         "url": "https://example.com"
     }
 ];
+
+// --- DO NOT EDIT BELOW THIS LINE ---
 
 const gameGrid = document.getElementById('gameGrid');
 const gameView = document.getElementById('gameView');
@@ -19,7 +21,6 @@ const gameFrame = document.getElementById('gameFrame');
 const backBtn = document.getElementById('backBtn');
 const searchBar = document.getElementById('searchBar');
 
-// Function to display the cards
 function displayGames(games) {
     gameGrid.innerHTML = ''; 
     games.forEach(game => {
@@ -38,10 +39,8 @@ function displayGames(games) {
     });
 }
 
-// Initial display
 displayGames(gamesData);
 
-// Search functionality
 searchBar.addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
     const filtered = gamesData.filter(game => 
@@ -50,7 +49,6 @@ searchBar.addEventListener('input', (e) => {
     displayGames(filtered);
 });
 
-// Back button
 backBtn.onclick = () => {
     gameGrid.classList.remove('hidden');
     gameView.classList.add('hidden');
