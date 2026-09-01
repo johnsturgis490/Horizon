@@ -3,36 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unblocked Games Hub</title>
+    <title>Unblocked Games Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Unblocked<span>Games</span></h1>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for a game...">
-        </div>
+        <h1>Unblocked Games</h1>
+        <input type="text" id="searchBar" placeholder="Search for a game...">
     </header>
 
-    <!-- This grid is where the games appear -->
-    <main id="gameGrid" class="game-grid"></main>
+    <main>
+        <!-- This grid shows the list of games -->
+        <div id="gameGrid" class="game-grid"></div>
 
-    <!-- This is the popup window that plays the game -->
-    <div id="gameModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Game</h2>
-                <button id="closeBtn">&times;</button>
-            </div>
+        <!-- This section is hidden until a game is clicked -->
+        <div id="gameView" class="hidden">
+            <button id="backBtn">← Back to Games</button>
             <div class="iframe-container">
                 <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="modal-footer">
-                <button onclick="toggleFullScreen()">Go Fullscreen</button>
-            </div>
         </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
